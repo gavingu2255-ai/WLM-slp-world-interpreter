@@ -32,7 +32,12 @@ and produces **SLP**:
 - closure states  
 
 The output is a valid **RSG** or **FRSG** graph that can be fed directly into:
-slp interpret world.slp slp resolve world.slp slp run world.slp --until-stable
+
+```bash
+slp interpret world.slp
+slp resolve world.slp
+slp run world.slp --until-stable
+```
 
 ---
 
@@ -105,9 +110,11 @@ Outputs deterministic SLP text:
 ## 4. Example
 
 ### Input
-
-
-A red ball is on the table. A cat is watching it from the chair. The window is open.
+```
+A red ball is on the table.
+A cat is watching it from the chair.
+The window is open.
+```
 
 ### Output (SLP)
 ```slp
@@ -124,50 +131,72 @@ node Cat {
 node Window {
     state: open
 }
+```
 
+---
 
+## 5. Integration with SLP
 
-5. Integration with SLP
 The interpreter is fully aligned with:
-- SLP syntax
-- SLP grammar
-- SLP interpreter
-- SLP resolution engine
-- SLP runtime
-This means:
-- Output is always valid SLP
-- Output can be resolved deterministically
-- Output can be executed in the SLP runtime
-- Output can be used by any SLP‑compatible agent
 
-6. Use cases
-1. Agent world‑state understanding
+- SLP syntax  
+- SLP grammar  
+- SLP interpreter  
+- SLP resolution engine  
+- SLP runtime  
+
+This means:
+
+- Output is always valid SLP  
+- Output can be resolved deterministically  
+- Output can be executed in the SLP runtime  
+- Output can be used by any SLP‑compatible agent  
+
+---
+
+## 6. Use cases
+
+### 1. Agent world‑state understanding  
 Agents can convert observations → structure → decisions.
-2. World model alignment
+
+### 2. World model alignment  
 World models can output structured states instead of raw text.
-3. Simulation engines
+
+### 3. Simulation engines  
 Simulators can ingest SLP graphs directly.
-4. Multi‑agent systems
+
+### 4. Multi‑agent systems  
 Shared world structure = consistent coordination.
-5. Reasoning engines
+
+### 5. Reasoning engines  
 SLP provides explicit relations and states for deterministic reasoning.
 
-7. Roadmap (high‑level)
-- Video‑frame → SLP
-- Real‑time world updates
-- Multi‑agent observation fusion
-- FRSG optimization
-- SLP dimension inference
-- Spatial reasoning module
-- Temporal reasoning module
-See docs/roadmap.md for details.
+---
 
-8. Summary
-The WLM‑SLP World Interpreter is the first practical bridge between
+## 7. Roadmap (high‑level)
+
+- Video‑frame → SLP  
+- Real‑time world updates  
+- Multi‑agent observation fusion  
+- FRSG optimization  
+- SLP dimension inference  
+- Spatial reasoning module  
+- Temporal reasoning module  
+
+See `docs/roadmap.md` for details.
+
+---
+
+## 8. Summary
+
+The **WLM‑SLP World Interpreter** is the first practical bridge between  
 natural‑language world descriptions and deterministic structural reasoning.
+
 It enables:
-- structured world understanding
-- stable agent behaviour
-- transparent reasoning
-- simulation‑ready world states
-A foundational component of the WLM ecosystem.
+
+- structured world understanding  
+- stable agent behaviour  
+- transparent reasoning  
+- simulation‑ready world states  
+
+A foundational component of the **WLM ecosystem**.
