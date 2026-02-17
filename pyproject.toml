@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "slp-world-interpreter"
+version = "0.1.0"
+description = "Convert natural-language world descriptions into deterministic SLP structural graphs."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+authors = [
+    { name = "WLM Project", email = "contact@wlm.ai" }
+]
+
+keywords = [
+    "SLP",
+    "world-model",
+    "structural-reasoning",
+    "agents",
+    "nlp",
+    "deterministic-graphs"
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    # MVP intentionally has no heavy dependencies
+]
+
+[project.urls]
+Homepage = "https://github.com/gavingu2255-ai/WLM-slp-world-interpreter"
+Documentation = "https://github.com/gavingu2255-ai/WLM-slp-world-interpreter/tree/main/docs"
+Source = "https://github.com/gavingu2255-ai/WLM-slp-world-interpreter"
+Issues = "https://github.com/gavingu2255-ai/WLM-slp-world-interpreter/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
