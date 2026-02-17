@@ -44,3 +44,6 @@ Issues = "https://github.com/gavingu2255-ai/WLM-slp-world-interpreter/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.scripts]
+slp-world = "slp_world_interpreter.cli:main"
