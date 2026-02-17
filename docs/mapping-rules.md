@@ -64,128 +64,187 @@ Spatial prepositions map to SLP relations.
 
 Example:
 
+```
 The cat is under the table.
+```
+
 →
+
 ```slp
 node Cat {
     position: under(Table)
 }
+```
 
+---
 
+## 2.2 Action Relations
+Verbs describing interactions become `state:` relations.
 
-2.2 Action Relations
-Verbs describing interactions become state: relations.
 Examples:
-- “The cat is watching the ball.”
-→ state: watching(Ball)
-- “The robot is carrying a box.”
-→ state: carrying(Box)
+- “The cat is watching the ball.”  
+  → `state: watching(Ball)`
+- “The robot is carrying a box.”  
+  → `state: carrying(Box)`
+
 Rules:
-- Subject = actor
-- Object = target
-- Verb phrase = state relation
+- Subject = actor  
+- Object = target  
+- Verb phrase = state relation  
 
-2.3 Ownership / Possession
+---
+
+## 2.3 Ownership / Possession
 Patterns like “has”, “carrying”, “holding” map to possession relations.
-Examples:
-- “The man has a key.” → possession: Key
-- “The robot is holding a tool.” → state: holding(Tool)
 
-3. State Mapping
-3.1 Static States
-Adjectival or descriptive states map to state:.
 Examples:
-- “The door is closed.” → state: closed
-- “The window is open.” → state: open
+- “The man has a key.” → `possession: Key`
+- “The robot is holding a tool.” → `state: holding(Tool)`
 
-3.2 Dynamic States
-Ongoing actions map to state: verb(target).
+---
+
+# 3. State Mapping
+
+## 3.1 Static States
+Adjectival or descriptive states map to `state:`.
+
 Examples:
-- “The dog is running.” → state: running
-- “Two people are arguing.”
-→ state: arguing(Person2)
-→ state: arguing(Person1)
+- “The door is closed.” → `state: closed`
+- “The window is open.” → `state: open`
 
-4. Dimensional Mapping
-4.1 Location Dimension
-Every entity receives a location: dimension if present.
+---
+
+## 3.2 Dynamic States
+Ongoing actions map to `state: verb(target)`.
+
 Examples:
-- “in the kitchen” → location: Kitchen
-- “on the chair” → location: on(Chair)
+- “The dog is running.” → `state: running`
+- “Two people are arguing.”  
+  → `state: arguing(Person2)`  
+  → `state: arguing(Person1)`
 
-4.2 Temporal Dimension
-Temporal cues map to time:.
+---
+
+# 4. Dimensional Mapping
+
+## 4.1 Location Dimension
+Every entity receives a `location:` dimension if present.
+
 Examples:
-- “now” → time: present
-- “yesterday” → time: past
-- “soon” → time: near_future
+- “in the kitchen” → `location: Kitchen`
+- “on the chair” → `location: on(Chair)`
 
-4.3 Agent Perspective Dimension
+---
+
+## 4.2 Temporal Dimension
+Temporal cues map to `time:`.
+
+Examples:
+- “now” → `time: present`
+- “yesterday” → `time: past`
+- “soon” → `time: near_future`
+
+---
+
+## 4.3 Agent Perspective Dimension
 If the description is from an agent’s viewpoint:
-- “I see a box.” → visibility: visible_to(Self)
-- “I hear footsteps.” → auditory: footsteps
 
-5. Multi‑Entity Mapping
-5.1 Groups
+- “I see a box.” → `visibility: visible_to(Self)`
+- “I hear footsteps.” → `auditory: footsteps`
+
+---
+
+# 5. Multi‑Entity Mapping
+
+## 5.1 Groups
 Plural nouns become indexed individuals unless explicitly grouped.
-Example:
-Three birds are flying.
 
+Example:
+
+```
+Three birds are flying.
+```
 
 →
+
+```slp
 node Bird1 { state: flying }
 node Bird2 { state: flying }
 node Bird3 { state: flying }
+```
 
+---
 
-
-5.2 Symmetric Relations
+## 5.2 Symmetric Relations
 Relations like “arguing”, “fighting”, “hugging” map symmetrically.
-Example:
-Two people are arguing.
 
+Example:
+
+```
+Two people are arguing.
+```
 
 →
+
+```slp
 node Person1 { state: arguing(Person2) }
 node Person2 { state: arguing(Person1) }
+```
 
+---
 
+# 6. Closure Mapping
 
-6. Closure Mapping
-6.1 Completed Actions
+## 6.1 Completed Actions
 Perfect tense → closure state.
-Examples:
-- “The door has closed.” → closure: closed
-- “The robot has dropped the box.” → closure: dropped(Box)
 
-6.2 Irreversible States
+Examples:
+- “The door has closed.” → `closure: closed`
+- “The robot has dropped the box.” → `closure: dropped(Box)`
+
+---
+
+## 6.2 Irreversible States
 Words like “broken”, “destroyed”, “dead” map to closure.
-Examples:
-- closure: broken
-- closure: destroyed
-- closure: dead
 
-7. Tension Mapping
-7.1 Conflicts
+Examples:
+- `closure: broken`
+- `closure: destroyed`
+- `closure: dead`
+
+---
+
+# 7. Tension Mapping
+
+## 7.1 Conflicts
 Words indicating conflict map to tension relations.
-Examples:
-- “arguing” → tension: conflict
-- “fighting” → tension: physical_conflict
 
-7.2 Goals / Intentions
+Examples:
+- “arguing” → `tension: conflict`
+- “fighting” → `tension: physical_conflict`
+
+---
+
+## 7.2 Goals / Intentions
 Intentions map to tension with direction.
-Examples:
-- “trying to open the door”
-→ tension: attempt(open(Door))
 
-8. Full Example
-Input
+Examples:
+- “trying to open the door”  
+  → `tension: attempt(open(Door))`
+
+---
+
+# 8. Full Example
+
+### Input
+```
 Two people are arguing loudly in the kitchen.
 A pot is boiling on the stove.
 The dog is hiding under the table.
+```
 
-
-Output
+### Output
+```slp
 node Person1 {
     state: arguing(Person2)
     volume: loud
@@ -207,23 +266,33 @@ node Dog {
     state: hiding
     location: under(Table)
 }
+```
 
+---
 
+# 9. Determinism Guarantee
 
-9. Determinism Guarantee
 All mapping rules are:
-- deterministic
-- order‑independent
-- grammar‑aligned
-- resolution‑compatible
-- runtime‑safe
-This ensures that any interpreter implementation will produce the same SLP graph for the same input.
 
-10. Notes
-- These rules are versioned with SLP v0.9
-- Full FRSG alignment is optional but recommended
-- Future versions will include spatial reasoning and temporal chains
+- deterministic  
+- order‑independent  
+- grammar‑aligned  
+- resolution‑compatible  
+- runtime‑safe  
 
-Summary
-This document defines the complete mapping pipeline from natural language → SLP.
-It ensures that world descriptions become stable, explicit, deterministic structural graphs suitable for reasoning, simulation, and multi‑agent coordination.
+This ensures that **any interpreter implementation** will produce the same SLP graph for the same input.
+
+---
+
+# 10. Notes
+
+- These rules are versioned with SLP v0.9  
+- Full FRSG alignment is optional but recommended  
+- Future versions will include spatial reasoning and temporal chains  
+
+---
+
+# Summary
+
+This document defines the **complete mapping pipeline** from natural language → SLP.  
+It ensures that world descriptions become **stable, explicit, deterministic structural graphs** suitable for reasoning, simulation, and multi‑agent coordination.
